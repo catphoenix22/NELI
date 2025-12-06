@@ -1,0 +1,3162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT CHAT 2025 - Complete Social Messaging Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #5b21b6;
+            --secondary: #f0abfc;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --border-radius: 20px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px rgba(124, 58, 237, 0.15);
+            --gradient: linear-gradient(135deg, #7c3aed 0%, #f0abfc 100%);
+            --gradient-dark: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Auth Screens */
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-box {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-logo i {
+            font-size: 50px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .auth-logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .auth-logo p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .btn {
+            padding: 16px 30px;
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 1rem;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-google {
+            background: white;
+            color: var(--dark);
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-google:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Main App Container (Hidden Initially) */
+        .container {
+            display: none;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 25px;
+            height: calc(100vh - 40px);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #e2e8f0;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        /* Main App Styles */
+        .container.active {
+            display: flex;
+        }
+
+        .left-sidebar {
+            width: 85px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 15px;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: var(--gradient);
+            border-radius: 18px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--gray);
+            position: relative;
+        }
+
+        .nav-item:hover {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: rgba(124, 58, 237, 0.12);
+            color: var(--primary);
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .nav-item span {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nav-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--danger);
+            border-radius: 50%;
+        }
+
+        .user-status {
+            margin-top: auto;
+            position: relative;
+        }
+
+        .status-indicator {
+            width: 14px;
+            height: 14px;
+            background: var(--success);
+            border-radius: 50%;
+            border: 3px solid white;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            z-index: 2;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            gap: 25px;
+            height: 100%;
+        }
+
+        /* Middle Panel - Contacts/Groups */
+        .middle-panel {
+            width: 350px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .panel-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .panel-subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .panel-tabs {
+            display: flex;
+            padding: 0 25px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-top: 20px;
+        }
+
+        .panel-tab {
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--gray);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .panel-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .panel-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+        }
+
+        /* Contact/Group Items */
+        .contact-item, .group-item, .community-item {
+            display: flex;
+            align-items: center;
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .contact-item:hover, .group-item:hover, .community-item:hover {
+            background: rgba(124, 58, 237, 0.05);
+        }
+
+        .contact-item.active, .group-item.active, .community-item.active {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: var(--primary);
+        }
+
+        .contact-avatar, .group-avatar, .community-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            position: relative;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-avatar {
+            background: var(--gradient);
+        }
+
+        .group-avatar {
+            background: var(--gradient-success);
+        }
+
+        .community-avatar {
+            background: var(--gradient-dark);
+        }
+
+        .contact-info, .group-info, .community-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .contact-info h4, .group-info h4, .community-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .contact-info p, .group-info p, .community-info p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--success);
+            border: 2px solid white;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .contact-status.away {
+            background: var(--warning);
+        }
+
+        .contact-status.offline {
+            background: var(--gray);
+        }
+
+        .member-count {
+            font-size: 0.8rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .add-contact-btn, .create-group-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .add-contact-btn:hover, .create-group-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Right Panel - Chat Area */
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-partner-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-partner-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .chat-partner-avatar.group {
+            background: var(--gradient-success);
+        }
+
+        .chat-partner-avatar.community {
+            background: var(--gradient-dark);
+        }
+
+        .chat-header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .chat-action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 20px;
+        }
+
+        .chat-action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .messages-container {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            display: flex;
+            gap: 15px;
+            max-width: 70%;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.received {
+            align-self: flex-start;
+        }
+
+        .message.sent {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+
+        .message-content {
+            padding: 18px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            max-width: 100%;
+        }
+
+        .message.received .message-content {
+            background: white;
+            border-top-left-radius: 5px;
+        }
+
+        .message.sent .message-content {
+            background: var(--primary);
+            color: white;
+            border-top-right-radius: 5px;
+        }
+
+        .message-text {
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .message-status {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 20px;
+            width: fit-content;
+            box-shadow: var(--shadow);
+            align-self: flex-start;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            padding: 25px;
+            border-top: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .input-action-btn {
+            background: rgba(124, 58, 237, 0.1);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .input-action-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .message-input-container {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 18px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            resize: none;
+            max-height: 150px;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .send-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+            font-size: 20px;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeInModal 0.3s;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--dark);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8fafc;
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        /* Status Section */
+        .status-section {
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .status-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .status-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            width: 80px;
+        }
+
+        .status-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 10px;
+            border: 3px solid var(--primary);
+            padding: 3px;
+            position: relative;
+        }
+
+        .status-avatar.self {
+            border-color: transparent;
+        }
+
+        .status-avatar.self::after {
+            content: '+';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 25px;
+            height: 25px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            border: 3px solid white;
+        }
+
+        .status-name {
+            font-size: 0.85rem;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .status-item.viewed .status-avatar {
+            border-color: var(--gray);
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: none;
+            padding: 25px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+            position: relative;
+        }
+
+        .profile-avatar-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: 4px solid white;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .profile-status {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .profile-status.active {
+            color: var(--success);
+        }
+
+        .profile-info {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .profile-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            width: 120px;
+            color: var(--dark);
+        }
+
+        .info-value {
+            flex: 1;
+            color: var(--dark);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .profile-action-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            border-radius: 12px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .profile-action-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .profile-action-btn.secondary {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary);
+        }
+
+        .profile-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* New Features */
+        .call-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            z-index: 2000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .call-screen.active {
+            display: flex;
+        }
+
+        .call-participant {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .call-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 60px;
+        }
+
+        .call-controls {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .call-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .call-btn.accept {
+            background: var(--success);
+            color: white;
+        }
+
+        .call-btn.decline {
+            background: var(--danger);
+            color: white;
+        }
+
+        .call-btn.end {
+            background: var(--danger);
+            color: white;
+        }
+
+        .call-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            --light: #1f2937;
+            --dark: #f8fafc;
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        }
+
+        .dark-mode .left-sidebar,
+        .dark-mode .middle-panel,
+        .dark-mode .right-panel,
+        .dark-mode .auth-box,
+        .dark-mode .modal-content {
+            background: #374151;
+            color: var(--dark);
+        }
+
+        .dark-mode .search-input,
+        .dark-mode .form-control,
+        .dark-mode .form-select,
+        .dark-mode .message-input {
+            background: #4b5563;
+            border-color: #6b7280;
+            color: var(--dark);
+        }
+
+        .dark-mode .messages-container {
+            background: #1f2937;
+        }
+
+        .dark-mode .message.received .message-content {
+            background: #4b5563;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .left-sidebar {
+                width: 100%;
+                flex-direction: row;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .nav-menu {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+            
+            .user-status {
+                margin-top: 0;
+                margin-left: auto;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .middle-panel {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .chat-header-actions {
+                display: none;
+            }
+            
+            .message {
+                max-width: 85%;
+            }
+            
+            .profile-action-btn {
+                min-width: 100%;
+            }
+            
+            .auth-box {
+                padding: 25px;
+            }
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hologram-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hologram-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: hologram 3s infinite linear;
+        }
+
+        @keyframes hologram {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        .dark-mode ::-webkit-scrollbar-track {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <h2 style="color: var(--primary); margin-top: 20px;">CAT CHAT 2025</h2>
+        <p style="color: var(--gray); margin-top: 10px;">Loading your messaging experience...</p>
+    </div>
+
+    <!-- Authentication Screens -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <i class="fas fa-cat"></i>
+                <h1>CAT CHAT</h1>
+                <p>Complete Social Messaging Platform - 2025 Edition</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-form="login">Login</button>
+                <button class="auth-tab" data-form="register">Register</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="rememberMe" style="width: auto;">
+                        <span style="font-size: 0.9rem;">Remember me</span>
+                    </label>
+                    <a href="#" id="forgotPassword" style="font-size: 0.9rem; color: var(--primary); text-decoration: none;">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Sign In</button>
+                
+                <button type="button" class="btn btn-google" id="googleLogin">
+                    <i class="fab fa-google"></i> Sign in with Google
+                </button>
+            </form>
+            
+            <!-- Register Form -->
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Create a password" required>
+                    <small style="color: var(--gray); display: block; margin-top: 5px;">Must be at least 8 characters with letters and numbers</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" class="form-control" placeholder="Choose a username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="acceptTerms" required>
+                        <span>I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a></span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                
+                <button type="button" class="btn btn-google" id="googleRegister">
+                    <i class="fab fa-google"></i> Sign up with Google
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="container" id="mainContainer">
+        <!-- Left Sidebar Navigation -->
+        <div class="left-sidebar">
+            <div class="logo" id="appLogo">
+                <i class="fas fa-cat"></i>
+            </div>
+            
+            <div class="nav-menu">
+                <div class="nav-item active" data-tab="chats">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Chats</span>
+                </div>
+                <div class="nav-item" data-tab="contacts">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Contacts</span>
+                </div>
+                <div class="nav-item" data-tab="groups">
+                    <i class="fas fa-users"></i>
+                    <span>Groups</span>
+                </div>
+                <div class="nav-item" data-tab="communities">
+                    <i class="fas fa-globe"></i>
+                    <span>Communities</span>
+                </div>
+                <div class="nav-item" data-tab="channels">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <span>Channels</span>
+                    <div class="nav-badge"></div>
+                </div>
+                <div class="nav-item" data-tab="status">
+                    <i class="fas fa-circle"></i>
+                    <span>Status</span>
+                </div>
+                <div class="nav-item" data-tab="profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="nav-item" id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </div>
+            </div>
+            
+            <div class="user-status" id="userStatusButton">
+                <div class="contact-avatar" id="userAvatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="status-indicator" id="userStatusIndicator"></div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Middle Panel - Dynamic Content -->
+            <div class="middle-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title" id="panelTitle">Messages</h2>
+                    <p class="panel-subtitle" id="panelSubtitle">Recent conversations</p>
+                    
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Search messages, contacts, or groups...">
+                    </div>
+                    
+                    <div class="panel-tabs" id="panelTabs">
+                        <!-- Tabs will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="panel-content" id="panelContent">
+                    <!-- Content will be dynamically loaded here -->
+                </div>
+            </div>
+            
+            <!-- Right Panel - Chat Area -->
+            <div class="right-panel" id="chatPanel">
+                <div class="chat-header">
+                    <div class="chat-partner-info">
+                        <div class="chat-partner-avatar" id="chatAvatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h2 id="chatPartnerName">Select a conversation</h2>
+                            <p id="chatPartnerStatus">Click on a contact or group to start chatting</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-header-actions">
+                        <button class="chat-action-btn" id="voiceCallBtn">
+                            <i class="fas fa-phone-alt"></i>
+                        </button>
+                        <button class="chat-action-btn" id="videoCallBtn">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="chat-action-btn" id="chatInfoBtn">
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="messages-container" id="messagesContainer">
+                    <!-- Messages will appear here -->
+                    <div class="welcome-message">
+                        <div class="message received">
+                            <div class="message-avatar" style="background: var(--gradient);">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-text">
+                                    Welcome to <strong>CAT CHAT 2025</strong>! Select a contact, group, or community to start chatting. You can also create new ones using the buttons in the left panel.
+                                </div>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-container" id="chatInputContainer" style="display: none;">
+                    <div class="input-actions">
+                        <button class="input-action-btn" title="Attach file" id="attachFileBtn">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="input-action-btn" title="Insert emoji" id="emojiBtn">
+                            <i class="far fa-smile"></i>
+                        </button>
+                        <button class="input-action-btn" title="Record voice" id="voiceRecordBtn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="input-action-btn" title="Send GIF" id="gifBtn">
+                            <i class="fas fa-film"></i>
+                        </button>
+                        <button class="input-action-btn" title="Schedule message" id="scheduleMsgBtn">
+                            <i class="fas fa-clock"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="message-input-container">
+                        <textarea class="message-input" id="messageInput" placeholder="Type your message here..."></textarea>
+                        <button class="send-btn" id="sendMessageBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Section -->
+            <div class="profile-section" id="profileSection">
+                <!-- Profile content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Call Screen -->
+    <div class="call-screen" id="callScreen">
+        <div class="call-participant">
+            <div class="call-avatar" id="callAvatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <h2 id="callParticipantName">Calling...</h2>
+            <p id="callDuration">00:00</p>
+        </div>
+        
+        <div class="call-controls">
+            <button class="call-btn accept" id="acceptCallBtn" style="display: none;">
+                <i class="fas fa-phone"></i>
+            </button>
+            <button class="call-btn decline" id="declineCallBtn">
+                <i class="fas fa-phone-slash"></i>
+            </button>
+            <button class="call-btn end" id="endCallBtn" style="display: none;">
+                <i class="fas fa-phone-slash"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Contact Modal -->
+    <div class="modal" id="addContactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Contact</h3>
+                <button class="close-modal" id="closeAddContactModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addContactForm">
+                    <div class="form-group">
+                        <label for="contactName">Full Name</label>
+                        <input type="text" id="contactName" class="form-control" placeholder="Enter contact name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email Address</label>
+                        <input type="email" id="contactEmail" class="form-control" placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactCategory">Category</label>
+                        <select id="contactCategory" class="form-select">
+                            <option value="friends">Friends</option>
+                            <option value="family">Family</option>
+                            <option value="work">Work</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Contact</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Group Modal -->
+    <div class="modal" id="createGroupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Group</h3>
+                <button class="close-modal" id="closeCreateGroupModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createGroupForm">
+                    <div class="form-group">
+                        <label for="groupName">Group Name</label>
+                        <input type="text" id="groupName" class="form-control" placeholder="Enter group name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupDescription">Description</label>
+                        <textarea id="groupDescription" class="form-control" placeholder="Enter group description (optional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupType">Group Type</label>
+                        <select id="groupType" class="form-select">
+                            <option value="public">Public (Anyone can join)</option>
+                            <option value="private">Private (Invite only)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupMembers">Add Members</label>
+                        <div id="groupMembersList" style="margin-bottom: 10px;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;" id="selectedMembers"></div>
+                        </div>
+                        <select id="groupMembers" class="form-select" multiple style="height: 120px;">
+                            <!-- Contacts will be populated here -->
+                        </select>
+                        <small style="color: var(--gray);">Hold Ctrl (Cmd on Mac) to select multiple members</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Group</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="close-modal" id="closeEditProfileModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label for="profileName">Full Name</label>
+                        <input type="text" id="profileName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileUsername">Username</label>
+                        <input type="text" id="profileUsername" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileBio">Bio</label>
+                        <textarea id="profileBio" class="form-control" rows="3" placeholder="Tell people about yourself"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileStatus">Status</label>
+                        <select id="profileStatus" class="form-select">
+                            <option value="online">Online</option>
+                            <option value="away">Away</option>
+                            <option value="busy">Busy</option>
+                            <option value="offline">Offline</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePrivacy">Privacy Settings</label>
+                        <select id="profilePrivacy" class="form-select">
+                            <option value="public">Public (Anyone can message me)</option>
+                            <option value="contacts">Contacts Only</option>
+                            <option value="private">Private (No one can message me)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Status Modal -->
+    <div class="modal" id="addStatusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Status Update</h3>
+                <button class="close-modal" id="closeAddStatusModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addStatusForm">
+                    <div class="form-group">
+                        <label for="statusText">Status Text</label>
+                        <textarea id="statusText" class="form-control" placeholder="What's on your mind?" rows="3" required maxlength="200"></textarea>
+                        <small style="color: var(--gray); float: right;" id="statusCharCount">0/200</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="statusType">Status Type</label>
+                        <select id="statusType" class="form-select">
+                            <option value="text">Text Only</option>
+                            <option value="image">Image</option>
+                            <option value="video">Video</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="statusMediaGroup" style="display: none;">
+                        <label for="statusMedia">Upload Media</label>
+                        <input type="file" id="statusMedia" class="form-control" accept="image/*,video/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="statusDuration">Status Duration</label>
+                        <select id="statusDuration" class="form-select">
+                            <option value="24">24 hours</option>
+                            <option value="12">12 hours</option>
+                            <option value="6">6 hours</option>
+                            <option value="1">1 hour</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Status</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Application Data with User Authentication
+        const CatChatApp = {
+            // User Authentication State
+            isAuthenticated: false,
+            currentUser: null,
+            
+            // Mock Database (in a real app, this would be a backend)
+            users: [
+                {
+                    id: 1,
+                    name: "Alex Morgan",
+                    email: "alex@example.com",
+                    username: "@alexmorgan",
+                    password: "password123",
+                    avatar: "fas fa-user",
+                    status: "online",
+                    bio: "Digital creator & cat enthusiast 🐱 | Exploring the future of communication",
+                    privacy: "contacts",
+                    lastSeen: Date.now(),
+                    contacts: [2, 3, 4, 5],
+                    groups: [1, 2],
+                    communities: [1]
+                }
+            ],
+            
+            // Application Data
+            contacts: [
+                { id: 2, name: "Emma Wilson", email: "emma@example.com", avatar: "fas fa-user-circle", status: "online", lastSeen: Date.now(), category: "friends" },
+                { id: 3, name: "James Lee", email: "james@example.com", avatar: "fas fa-user-tie", status: "away", lastSeen: Date.now() - 600000, category: "work" },
+                { id: 4, name: "Sophia Garcia", email: "sophia@example.com", avatar: "fas fa-user-graduate", status: "offline", lastSeen: Date.now() - 7200000, category: "friends" },
+                { id: 5, name: "Michael Chen", email: "michael@example.com", avatar: "fas fa-user-astronaut", status: "online", lastSeen: Date.now(), category: "family" }
+            ],
+            
+            groups: [
+                { id: 1, name: "Cat Lovers Club", avatar: "fas fa-cat", members: [1, 2, 4], description: "For everyone who loves cats!", type: "public", adminId: 1, messages: [] },
+                { id: 2, name: "Weekend Hikers", avatar: "fas fa-hiking", members: [1, 3], description: "Planning hiking trips every weekend", type: "private", adminId: 2, messages: [] }
+            ],
+            
+            communities: [
+                { id: 1, name: "Tech Enthusiasts", avatar: "fas fa-laptop-code", members: [1, 2, 3, 4, 5], description: "Discussing the latest in technology", category: "technology" }
+            ],
+            
+            channels: [
+                { id: 1, name: "Announcements", avatar: "fas fa-bullhorn", members: [1, 2, 3, 4, 5], description: "Important announcements", type: "announcement", communityId: 1 }
+            ],
+            
+            statuses: [
+                { id: 1, userId: 2, userName: "Emma Wilson", avatar: "fas fa-user-circle", text: "Just adopted a new kitten! 🐱", time: "2 hours ago", viewed: false },
+                { id: 2, userId: 3, userName: "James Lee", avatar: "fas fa-user-tie", text: "Working on a new project", time: "5 hours ago", viewed: true }
+            ],
+            
+            // Application State
+            currentChat: null,
+            currentChatType: null,
+            activeTab: 'chats',
+            isDarkMode: false,
+            isInCall: false,
+            
+            // Initialize the application
+            init() {
+                this.hideLoading();
+                this.checkAuthStatus();
+                this.setupEventListeners();
+                this.setupMockData();
+            },
+            
+            // Hide loading screen
+            hideLoading() {
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 1000);
+            },
+            
+            // Check authentication status
+            checkAuthStatus() {
+                const savedUser = localStorage.getItem('catChatUser');
+                const savedToken = localStorage.getItem('catChatToken');
+                
+                if (savedUser && savedToken) {
+                    this.currentUser = JSON.parse(savedUser);
+                    this.isAuthenticated = true;
+                    this.showMainApp();
+                } else {
+                    this.showAuthScreen();
+                }
+            },
+            
+            // Show authentication screen
+            showAuthScreen() {
+                document.getElementById('authContainer').style.display = 'flex';
+                document.getElementById('mainContainer').style.display = 'none';
+            },
+            
+            // Show main application
+            showMainApp() {
+                document.getElementById('authContainer').style.display = 'none';
+                document.getElementById('mainContainer').classList.add('active');
+                this.loadTabContent('chats');
+                this.updateUserStatus();
+            },
+            
+            // Setup event listeners
+            setupEventListeners() {
+                // Auth tab switching
+                document.querySelectorAll('.auth-tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const form = tab.getAttribute('data-form');
+                        this.switchAuthForm(form, tab);
+                    });
+                });
+                
+                // Login form
+                document.getElementById('loginForm').addEventListener('submit', (e) => this.handleLogin(e));
+                
+                // Register form
+                document.getElementById('registerForm').addEventListener('submit', (e) => this.handleRegister(e));
+                
+                // Google login/register
+                document.getElementById('googleLogin').addEventListener('click', () => this.handleGoogleAuth('login'));
+                document.getElementById('googleRegister').addEventListener('click', () => this.handleGoogleAuth('register'));
+                
+                // Forgot password
+                document.getElementById('forgotPassword').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.handleForgotPassword();
+                });
+                
+                // Navigation
+                document.querySelectorAll('.nav-item[data-tab]').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const tab = item.getAttribute('data-tab');
+                        this.loadTabContent(tab);
+                        
+                        // Update active nav item
+                        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                        item.classList.add('active');
+                        
+                        // Show/hide profile section
+                        if (tab === 'profile') {
+                            document.getElementById('chatPanel').style.display = 'none';
+                            document.getElementById('profileSection').style.display = 'block';
+                            document.getElementById('profileSection').classList.add('active');
+                            this.loadProfileSection();
+                        } else {
+                            document.getElementById('chatPanel').style.display = 'flex';
+                            document.getElementById('profileSection').style.display = 'none';
+                            document.getElementById('profileSection').classList.remove('active');
+                        }
+                    });
+                });
+                
+                // Dark mode toggle
+                document.getElementById('darkModeToggle').addEventListener('click', () => this.toggleDarkMode());
+                
+                // User status click
+                document.getElementById('userStatusButton').addEventListener('click', () => {
+                    this.loadTabContent('profile');
+                });
+                
+                // Send message
+                document.getElementById('sendMessageBtn').addEventListener('click', () => this.sendMessage());
+                document.getElementById('messageInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+                
+                // Auto-resize textarea
+                document.getElementById('messageInput').addEventListener('input', this.autoResizeTextarea);
+                
+                // Call buttons
+                document.getElementById('voiceCallBtn').addEventListener('click', () => this.startVoiceCall());
+                document.getElementById('videoCallBtn').addEventListener('click', () => this.startVideoCall());
+                document.getElementById('endCallBtn').addEventListener('click', () => this.endCall());
+                document.getElementById('declineCallBtn').addEventListener('click', () => this.endCall());
+                document.getElementById('acceptCallBtn').addEventListener('click', () => this.acceptCall());
+                
+                // Status type change
+                document.getElementById('statusType')?.addEventListener('change', function() {
+                    const mediaGroup = document.getElementById('statusMediaGroup');
+                    mediaGroup.style.display = this.value === 'text' ? 'none' : 'block';
+                });
+                
+                // Status character count
+                document.getElementById('statusText')?.addEventListener('input', function() {
+                    document.getElementById('statusCharCount').textContent = `${this.value.length}/200`;
+                });
+            },
+            
+            // Setup mock data for demo
+            setupMockData() {
+                // Add some initial messages
+                this.groups[0].messages = [
+                    { id: 1, senderId: 2, senderName: "Emma Wilson", text: "Anyone have advice for introducing a new kitten to an older cat?", time: "Yesterday, 3:45 PM", status: "read" },
+                    { id: 2, senderId: 4, senderName: "Sophia Garcia", text: "Take it slow! Keep them separated at first.", time: "Yesterday, 4:10 PM", status: "read" },
+                    { id: 3, senderId: 1, senderName: this.currentUser?.name || "You", text: "I agree with Sophia. Also, try feeding them on opposite sides of a closed door.", time: "Yesterday, 4:22 PM", status: "read" }
+                ];
+            },
+            
+            // Switch between login and register forms
+            switchAuthForm(form, clickedTab) {
+                // Update active tab
+                document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
+                clickedTab.classList.add('active');
+                
+                // Show/hide forms
+                document.getElementById('loginForm').classList.remove('active');
+                document.getElementById('registerForm').classList.remove('active');
+                document.getElementById(`${form}Form`).classList.add('active');
+            },
+            
+            // Handle user login
+            handleLogin(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+                
+                // Find user in mock database
+                const user = this.users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    // Successful login
+                    this.currentUser = user;
+                    this.isAuthenticated = true;
+                    
+                    // Save to localStorage
+                    localStorage.setItem('catChatUser', JSON.stringify(user));
+                    localStorage.setItem('catChatToken', 'mock-jwt-token-' + Date.now());
+                    
+                    if (rememberMe) {
+                        localStorage.setItem('catChatRemember', 'true');
+                    }
+                    
+                    // Show success message
+                    this.showNotification('Login successful! Welcome back.', 'success');
+                    
+                    // Show main app
+                    setTimeout(() => {
+                        this.showMainApp();
+                    }, 1000);
+                    
+                } else {
+                    // Failed login
+                    this.showNotification('Invalid email or password. Please try again.', 'error');
+                }
+            },
+            
+                       
+            // Handle Google authentication
+            handleGoogleAuth(action) {
+                this.showNotification(`Google ${action} would open here. This is a demo.`, 'info');
+                
+                // In a real app, this would redirect to Google OAuth
+                // For demo purposes, we'll simulate a successful login
+                if (action === 'login') {
+                    setTimeout(() => {
+                        const demoUser = this.users[0];
+                        this.currentUser = demoUser;
+                        this.isAuthenticated = true;
+                        localStorage.setItem('catChatUser', JSON.stringify(demoUser));
+                        localStorage.setItem('catChatToken', 'mock-google-token');
+                        this.showMainApp();
+                    }, 1000);
+                }
+            },
+// Handle user registration - FIXED VERSION
+handleRegister(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    const confirmPassword = document.getElementById('registerConfirmPassword').value;
+    const username = document.getElementById('registerUsername').value;
+    const acceptTerms = document.getElementById('acceptTerms').checked;
+    
+    // Validation
+    if (password !== confirmPassword) {
+        this.showNotification('Passwords do not match.', 'error');
+        return;
+    }
+    
+    if (password.length < 8) {
+        this.showNotification('Password must be at least 8 characters.', 'error');
+        return;
+    }
+    
+    if (!acceptTerms) {
+        this.showNotification('You must accept the terms and conditions.', 'error');
+        return;
+    }
+    
+    // Check if user already exists
+    if (this.users.some(u => u.email === email)) {
+        this.showNotification('An account with this email already exists.', 'error');
+        return;
+    }
+    
+    // Create new user
+    const newUser = {
+        id: this.users.length + 1,
+        name: name,
+        email: email,
+        username: username.startsWith('@') ? username : '@' + username,
+        password: password,
+        avatar: 'fas fa-user',
+        status: 'online',
+        bio: 'New CAT CHAT user',
+        privacy: 'contacts',
+        lastSeen: Date.now(),
+        contacts: [2, 3, 4, 5], // Add some default contacts
+        groups: [1, 2],
+        communities: [1]
+    };
+    
+    // Add to users
+    this.users.push(newUser);
+    this.currentUser = newUser;
+    this.isAuthenticated = true;
+    
+    // Save to localStorage
+    localStorage.setItem('catChatUser', JSON.stringify(newUser));
+    localStorage.setItem('catChatToken', 'mock-jwt-token-' + Date.now());
+    
+    // Show success message
+    this.showNotification('Account created successfully! Welcome to CAT CHAT.', 'success');
+    
+    // Reset the form
+    e.target.reset();
+    
+    // Show main app - IMPORTANT: Call this after a short delay
+    setTimeout(() => {
+        this.showMainApp();
+        this.loadTabContent('chats'); // Load the chats tab by default
+        this.updateUserStatus(); // Update status indicator
+        this.setupMockData(); // Setup initial data for the new user
+    }, 500);
+},
+            
+            // Handle forgot password
+            handleForgotPassword() {
+                const email = prompt('Please enter your email address to reset your password:');
+                if (email) {
+                    this.showNotification(`Password reset instructions sent to ${email}. Check your inbox.`, 'info');
+                }
+            },
+            
+            // Load tab content
+            loadTabContent(tab) {
+                this.activeTab = tab;
+                
+                // Clear previous content
+                const panelTabs = document.getElementById('panelTabs');
+                const panelContent = document.getElementById('panelContent');
+                panelTabs.innerHTML = '';
+                panelContent.innerHTML = '';
+                
+                switch(tab) {
+                    case 'chats':
+                        this.loadChatsTab(panelTabs, panelContent);
+                        break;
+                    case 'contacts':
+                        this.loadContactsTab(panelTabs, panelContent);
+                        break;
+                    case 'groups':
+                        this.loadGroupsTab(panelTabs, panelContent);
+                        break;
+                    case 'communities':
+                        this.loadCommunitiesTab(panelContent);
+                        break;
+                    case 'channels':
+                        this.loadChannelsTab(panelContent);
+                        break;
+                    case 'status':
+                        this.loadStatusTab(panelContent);
+                        break;
+                }
+            },
+            
+            // Load chats tab
+            loadChatsTab(panelTabs, panelContent) {
+                document.getElementById('panelTitle').textContent = 'Messages';
+                document.getElementById('panelSubtitle').textContent = 'Recent conversations';
+                
+                // Create tabs
+                const tabs = [
+                    { id: 'all', name: 'All', active: true },
+                    { id: 'unread', name: 'Unread', badge: 3 },
+                    { id: 'groups', name: 'Groups' },
+                    { id: 'channels', name: 'Channels' }
+                ];
+                
+                tabs.forEach(tab => {
+                    const tabElement = document.createElement('button');
+                    tabElement.className = `panel-tab ${tab.active ? 'active' : ''}`;
+                    tabElement.textContent = tab.name;
+                    if (tab.badge) {
+                        const badge = document.createElement('span');
+                        badge.className = 'nav-badge';
+                        badge.style.position = 'absolute';
+                        badge.style.top = '10px';
+                        badge.style.right = '10px';
+                        tabElement.appendChild(badge);
+                    }
+                    tabElement.addEventListener('click', () => {
+                        document.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
+                        tabElement.classList.add('active');
+                    });
+                    panelTabs.appendChild(tabElement);
+                });
+                
+                // Add status section
+                const statusSection = document.createElement('div');
+                statusSection.className = 'status-section';
+                statusSection.innerHTML = `
+                    <div class="status-title">Recent Status Updates</div>
+                    <div class="status-container" id="statusContainer"></div>
+                `;
+                panelContent.appendChild(statusSection);
+                
+                // Add status items
+                const statusContainer = document.getElementById('statusContainer');
+                
+                // Add self status item
+                const selfStatusItem = document.createElement('div');
+                selfStatusItem.className = 'status-item';
+                selfStatusItem.innerHTML = `
+                    <div class="status-avatar self" style="background: var(--gradient);">
+                        <i class="${this.currentUser.avatar}"></i>
+                    </div>
+                    <div class="status-name">Add Status</div>
+                `;
+                selfStatusItem.addEventListener('click', () => this.openModal('addStatus'));
+                statusContainer.appendChild(selfStatusItem);
+                
+                // Add contact statuses
+                this.statuses.forEach(status => {
+                    const statusItem = document.createElement('div');
+                    statusItem.className = `status-item ${status.viewed ? 'viewed' : ''}`;
+                    statusItem.innerHTML = `
+                        <div class="status-avatar" style="background: ${status.viewed ? 'var(--gray)' : 'var(--gradient)'};">
+                            <i class="${status.avatar}"></i>
+                        </div>
+                        <div class="status-name">${status.userName.split(' ')[0]}</div>
+                    `;
+                    statusItem.addEventListener('click', () => {
+                        this.showNotification(`Viewing ${status.userName}'s status: "${status.text}"`, 'info');
+                        status.viewed = true;
+                        statusItem.classList.add('viewed');
+                        statusItem.querySelector('.status-avatar').style.background = 'var(--gray)';
+                    });
+                    statusContainer.appendChild(statusItem);
+                });
+                
+                // Add recent chats title
+                const recentTitle = document.createElement('h3');
+                recentTitle.style.margin = '25px 0 15px 0';
+                recentTitle.style.fontSize = '1.2rem';
+                recentTitle.style.color = 'var(--dark)';
+                recentTitle.textContent = 'Recent Conversations';
+                panelContent.appendChild(recentTitle);
+                
+                // Add recent chats
+                this.contacts.slice(0, 3).forEach(contact => {
+                    const contactItem = this.createContactItem(contact);
+                    contactItem.addEventListener('click', () => this.openChat('contact', contact));
+                    panelContent.appendChild(contactItem);
+                });
+                
+                // Add groups
+                this.groups.slice(0, 2).forEach(group => {
+                    const groupItem = this.createGroupItem(group);
+                    groupItem.addEventListener('click', () => this.openChat('group', group));
+                    panelContent.appendChild(groupItem);
+                });
+            },
+            
+            // Load contacts tab
+            loadContactsTab(panelTabs, panelContent) {
+                document.getElementById('panelTitle').textContent = 'Contacts';
+                document.getElementById('panelSubtitle').textContent = 'Your contacts list';
+                
+                // Create tabs
+                const tabs = [
+                    { id: 'all', name: 'All', active: true },
+                    { id: 'online', name: 'Online' },
+                    { id: 'friends', name: 'Friends' },
+                    { id: 'family', name: 'Family' },
+                    { id: 'work', name: 'Work' }
+                ];
+                
+                tabs.forEach(tab => {
+                    const tabElement = document.createElement('button');
+                    tabElement.className = `panel-tab ${tab.active ? 'active' : ''}`;
+                    tabElement.textContent = tab.name;
+                    tabElement.addEventListener('click', () => {
+                        document.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
+                        tabElement.classList.add('active');
+                    });
+                    panelTabs.appendChild(tabElement);
+                });
+                
+                // Add "Add Contact" button
+                const addButton = document.createElement('button');
+                addButton.className = 'add-contact-btn';
+                addButton.innerHTML = '<i class="fas fa-user-plus"></i> Add New Contact';
+                addButton.addEventListener('click', () => this.openModal('addContact'));
+                panelContent.appendChild(addButton);
+                
+                // Add contacts list
+                this.contacts.forEach(contact => {
+                    const contactItem = this.createContactItem(contact);
+                    contactItem.addEventListener('click', () => this.openChat('contact', contact));
+                    panelContent.appendChild(contactItem);
+                });
+            },
+            
+            // Load groups tab
+            loadGroupsTab(panelTabs, panelContent) {
+                document.getElementById('panelTitle').textContent = 'Groups';
+                document.getElementById('panelSubtitle').textContent = 'Your group conversations';
+                
+                // Create tabs
+                const tabs = [
+                    { id: 'all', name: 'All', active: true },
+                    { id: 'admin', name: 'You Admin' },
+                    { id: 'public', name: 'Public' },
+                    { id: 'private', name: 'Private' }
+                ];
+                
+                tabs.forEach(tab => {
+                    const tabElement = document.createElement('button');
+                    tabElement.className = `panel-tab ${tab.active ? 'active' : ''}`;
+                    tabElement.textContent = tab.name;
+                    panelTabs.appendChild(tabElement);
+                });
+                
+                // Add "Create Group" button
+                const createButton = document.createElement('button');
+                createButton.className = 'create-group-btn';
+                createButton.innerHTML = '<i class="fas fa-plus-circle"></i> Create New Group';
+                createButton.addEventListener('click', () => this.openModal('createGroup'));
+                panelContent.appendChild(createButton);
+                
+                // Add groups list
+                this.groups.forEach(group => {
+                    const groupItem = this.createGroupItem(group);
+                    groupItem.addEventListener('click', () => this.openChat('group', group));
+                    panelContent.appendChild(groupItem);
+                });
+            },
+            
+            // Load communities tab
+            loadCommunitiesTab(panelContent) {
+                document.getElementById('panelTitle').textContent = 'Communities';
+                document.getElementById('panelSubtitle').textContent = 'Join communities of interest';
+                
+                // Add "Create Community" button
+                const createButton = document.createElement('button');
+                createButton.className = 'create-group-btn';
+                createButton.innerHTML = '<i class="fas fa-plus-circle"></i> Create New Community';
+                createButton.addEventListener('click', () => this.showNotification('Community creation coming soon!', 'info'));
+                panelContent.appendChild(createButton);
+                
+                // Add communities list
+                this.communities.forEach(community => {
+                    const communityItem = this.createCommunityItem(community);
+                    communityItem.addEventListener('click', () => this.openChat('community', community));
+                    panelContent.appendChild(communityItem);
+                });
+            },
+            
+            // Load channels tab
+            loadChannelsTab(panelContent) {
+                document.getElementById('panelTitle').textContent = 'Channels';
+                document.getElementById('panelSubtitle').textContent = 'Broadcast and announcement channels';
+                
+                // Add "Create Channel" button
+                const createButton = document.createElement('button');
+                createButton.className = 'create-group-btn';
+                createButton.innerHTML = '<i class="fas fa-plus-circle"></i> Create New Channel';
+                createButton.addEventListener('click', () => this.showNotification('Channel creation coming soon!', 'info'));
+                panelContent.appendChild(createButton);
+                
+                // Add channels list
+                this.channels.forEach(channel => {
+                    const channelItem = document.createElement('div');
+                    channelItem.className = 'contact-item';
+                    channelItem.innerHTML = `
+                        <div class="contact-avatar" style="background: var(--gradient-dark);">
+                            <i class="${channel.avatar}"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>${channel.name}</h4>
+                            <p>${channel.description}</p>
+                            <div class="member-count">
+                                <i class="fas fa-user"></i> ${channel.members.length} members
+                            </div>
+                        </div>
+                    `;
+                    channelItem.addEventListener('click', () => this.openChat('channel', channel));
+                    panelContent.appendChild(channelItem);
+                });
+            },
+            
+            // Load status tab
+            loadStatusTab(panelContent) {
+                document.getElementById('panelTitle').textContent = 'Status';
+                document.getElementById('panelSubtitle').textContent = 'See what your contacts are up to';
+                
+                // Add "Add Status" button
+                const addButton = document.createElement('button');
+                addButton.className = 'add-contact-btn';
+                addButton.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Status';
+                addButton.addEventListener('click', () => this.openModal('addStatus'));
+                panelContent.appendChild(addButton);
+                
+                // Add status updates from contacts
+                const statusTitle = document.createElement('h3');
+                statusTitle.style.margin = '20px 0 15px 0';
+                statusTitle.style.fontSize = '1.2rem';
+                statusTitle.style.color = 'var(--dark)';
+                statusTitle.textContent = 'Recent Status Updates';
+                panelContent.appendChild(statusTitle);
+                
+                this.statuses.forEach(status => {
+                    const statusItem = document.createElement('div');
+                    statusItem.className = 'contact-item';
+                    statusItem.innerHTML = `
+                        <div class="contact-avatar" style="background: ${status.viewed ? 'var(--gray)' : 'var(--gradient)'};">
+                            <i class="${status.avatar}"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>${status.userName}</h4>
+                            <p>${status.text}</p>
+                            <div style="font-size: 0.8rem; color: var(--gray); margin-top: 5px;">
+                                <i class="far fa-clock"></i> ${status.time}
+                            </div>
+                        </div>
+                    `;
+                    statusItem.addEventListener('click', () => {
+                        this.showNotification(`Viewing ${status.userName}'s status: "${status.text}"`, 'info');
+                        status.viewed = true;
+                        statusItem.querySelector('.contact-avatar').style.background = 'var(--gray)';
+                    });
+                    panelContent.appendChild(statusItem);
+                });
+            },
+            
+            // Create contact item element
+            createContactItem(contact) {
+                const item = document.createElement('div');
+                item.className = 'contact-item';
+                
+                // Calculate last seen time
+                const lastSeen = this.formatLastSeen(contact.lastSeen);
+                
+                item.innerHTML = `
+                    <div class="contact-avatar">
+                        <i class="${contact.avatar}"></i>
+                        <div class="contact-status ${contact.status}"></div>
+                    </div>
+                    <div class="contact-info">
+                        <h4>${contact.name}</h4>
+                        <p>${contact.status === 'online' ? 'Online' : contact.status === 'away' ? 'Away' : 'Offline'} • ${lastSeen}</p>
+                    </div>
+                `;
+                return item;
+            },
+            
+            // Create group item element
+            createGroupItem(group) {
+                const item = document.createElement('div');
+                item.className = 'group-item';
+                item.innerHTML = `
+                    <div class="group-avatar">
+                        <i class="${group.avatar}"></i>
+                    </div>
+                    <div class="group-info">
+                        <h4>${group.name}</h4>
+                        <p>${group.description}</p>
+                        <div class="member-count">
+                            <i class="fas fa-user"></i> ${group.members.length} members • ${group.type}
+                        </div>
+                    </div>
+                `;
+                return item;
+            },
+            
+            // Create community item element
+            createCommunityItem(community) {
+                const item = document.createElement('div');
+                item.className = 'community-item';
+                item.innerHTML = `
+                    <div class="community-avatar">
+                        <i class="${community.avatar}"></i>
+                    </div>
+                    <div class="community-info">
+                        <h4>${community.name}</h4>
+                        <p>${community.description}</p>
+                        <div class="member-count">
+                            <i class="fas fa-user"></i> ${community.members.length} members • ${community.category}
+                        </div>
+                    </div>
+                `;
+                return item;
+            },
+            
+            // Open chat with a contact, group, community, or channel
+            openChat(type, data) {
+                this.currentChat = data.id;
+                this.currentChatType = type;
+                
+                // Update chat header
+                document.getElementById('chatPartnerName').textContent = data.name;
+                
+                // Set avatar based on type
+                const chatAvatar = document.getElementById('chatAvatar');
+                chatAvatar.className = `chat-partner-avatar ${type}`;
+                chatAvatar.innerHTML = `<i class="${data.avatar}"></i>`;
+                
+                // Set status based on type
+                const chatPartnerStatus = document.getElementById('chatPartnerStatus');
+                if (type === 'contact') {
+                    const statusText = data.status === 'online' ? 'Online' : data.status === 'away' ? 'Away' : 'Offline';
+                    const lastSeen = this.formatLastSeen(data.lastSeen);
+                    chatPartnerStatus.textContent = `${statusText} • ${lastSeen}`;
+                    chatAvatar.style.background = 'var(--gradient)';
+                } else if (type === 'group') {
+                    chatPartnerStatus.textContent = `${data.members.length} members • ${data.type} group`;
+                    chatAvatar.style.background = 'var(--gradient-success)';
+                } else if (type === 'community') {
+                    chatPartnerStatus.textContent = `${data.members.length} members • ${data.category} community`;
+                    chatAvatar.style.background = 'var(--gradient-dark)';
+                } else if (type === 'channel') {
+                    chatPartnerStatus.textContent = `${data.members.length} members • ${data.type} channel`;
+                    chatAvatar.style.background = 'var(--gradient-dark)';
+                }
+                
+                // Show chat input
+                document.getElementById('chatInputContainer').style.display = 'block';
+                
+                // Clear and load messages
+                const messagesContainer = document.getElementById('messagesContainer');
+                messagesContainer.innerHTML = '';
+                this.loadMessages(data.id, type);
+                
+                // Scroll to bottom
+                setTimeout(() => {
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 100);
+            },
+            
+            // Load messages for a chat
+            loadMessages(chatId, type) {
+                const messagesContainer = document.getElementById('messagesContainer');
+                
+                // Get messages based on chat type
+                let messages = [];
+                if (type === 'group') {
+                    const group = this.groups.find(g => g.id === chatId);
+                    messages = group?.messages || [];
+                } else if (type === 'contact') {
+                    // For demo, create some messages
+                    messages = [
+                        { id: 1, senderId: chatId, text: "Hey there! How are you?", time: "10:30 AM", status: "read" },
+                        { id: 2, senderId: this.currentUser.id, text: "I'm good, thanks! How about you?", time: "10:32 AM", status: "read" },
+                        { id: 3, senderId: chatId, text: "Doing great! Just finished work for the day.", time: "10:33 AM", status: "read" }
+                    ];
+                }
+                
+                if (messages.length === 0) {
+                    // No messages yet
+                    const welcomeMsg = document.createElement('div');
+                    welcomeMsg.className = 'welcome-message';
+                    welcomeMsg.innerHTML = `
+                        <div class="message received">
+                            <div class="message-avatar" style="background: var(--gradient);">
+                                <i class="${type === 'group' || type === 'community' || type === 'channel' ? 'fas fa-users' : 'fas fa-user'}"></i>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-text">
+                                    This is the beginning of your conversation with <strong>${document.getElementById('chatPartnerName').textContent}</strong>. Send your first message!
+                                </div>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                    `;
+                    messagesContainer.appendChild(welcomeMsg);
+                    return;
+                }
+                
+                // Add existing messages
+                messages.forEach(msg => {
+                    const isCurrentUser = msg.senderId === this.currentUser.id;
+                    const messageElement = document.createElement('div');
+                    messageElement.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
+                    
+                    // For groups, show sender name
+                    const senderName = msg.senderName || '';
+                    const contact = this.contacts.find(c => c.id === msg.senderId);
+                    const displayName = contact?.name || senderName;
+                    
+                    messageElement.innerHTML = `
+                        <div class="message-avatar" style="background: ${isCurrentUser ? 'var(--gradient)' : 'var(--gradient-success)'};">
+                            <i class="${isCurrentUser ? this.currentUser.avatar : contact?.avatar || 'fas fa-user-circle'}"></i>
+                        </div>
+                        <div class="message-content">
+                            ${type === 'group' && !isCurrentUser && displayName ? `<div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 5px;">${displayName}</div>` : ''}
+                            <div class="message-text">${this.escapeHtml(msg.text)}</div>
+                            <div class="message-time">${msg.time} ${isCurrentUser ? `<span class="message-status">${msg.status === 'read' ? '✓✓' : '✓'}</span>` : ''}</div>
+                        </div>
+                    `;
+                    
+                    messagesContainer.appendChild(messageElement);
+                });
+            },
+            
+            // Send a message
+            sendMessage() {
+                const messageInput = document.getElementById('messageInput');
+                const text = messageInput.value.trim();
+                if (text === '' || !this.currentChat) return;
+                
+                // Create message object
+                const newMessage = {
+                    id: Date.now(),
+                    senderId: this.currentUser.id,
+                    senderName: this.currentUser.name,
+                    text: text,
+                    time: this.getCurrentTime(),
+                    status: 'sent'
+                };
+                
+                // Add to messages based on chat type
+                if (this.currentChatType === 'group') {
+                    const group = this.groups.find(g => g.id === this.currentChat);
+                    if (group) {
+                        if (!group.messages) group.messages = [];
+                        group.messages.push(newMessage);
+                    }
+                }
+                
+                // Add message to UI
+                const messagesContainer = document.getElementById('messagesContainer');
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message sent animate__animated animate__fadeInUp';
+                messageElement.innerHTML = `
+                    <div class="message-avatar" style="background: var(--gradient);">
+                        <i class="${this.currentUser.avatar}"></i>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-text">${this.escapeHtml(text)}</div>
+                        <div class="message-time">${newMessage.time} <span class="message-status">✓</span></div>
+                    </div>
+                `;
+                messagesContainer.appendChild(messageElement);
+                
+                // Clear input
+                messageInput.value = '';
+                this.autoResizeTextarea();
+                
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Simulate reply after delay (for demo purposes)
+                if (this.currentChatType === 'contact' && Math.random() > 0.3) {
+                    setTimeout(() => {
+                        const replies = [
+                            "That's interesting! Tell me more.",
+                            "Thanks for sharing!",
+                            "I'll get back to you on that.",
+                            "Sounds good to me!",
+                            "Let me think about that..."
+                        ];
+                        const randomReply = replies[Math.floor(Math.random() * replies.length)];
+                        
+                        const contact = this.contacts.find(c => c.id === this.currentChat);
+                        const replyMessage = {
+                            id: Date.now() + 1,
+                            senderId: this.currentChat,
+                            senderName: contact?.name || 'Contact',
+                            text: randomReply,
+                            time: this.getCurrentTime(),
+                            status: 'read'
+                        };
+                        
+                        // Add to group messages if it's a group
+                        if (this.currentChatType === 'group') {
+                            const group = this.groups.find(g => g.id === this.currentChat);
+                            if (group) {
+                                group.messages.push(replyMessage);
+                            }
+                        }
+                        
+                        const replyElement = document.createElement('div');
+                        replyElement.className = 'message received animate__animated animate__fadeInUp';
+                        replyElement.innerHTML = `
+                            <div class="message-avatar" style="background: var(--gradient-success);">
+                                <i class="${contact?.avatar || 'fas fa-user-circle'}"></i>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-text">${this.escapeHtml(randomReply)}</div>
+                                <div class="message-time">${replyMessage.time}</div>
+                            </div>
+                        `;
+                        messagesContainer.appendChild(replyElement);
+                        
+                        // Update message status to read
+                        const statusElement = messageElement.querySelector('.message-status');
+                        if (statusElement) statusElement.textContent = '✓✓';
+                        
+                        // Scroll to bottom
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }, 1000 + Math.random() * 2000);
+                }
+            },
+            
+            // Load profile section
+            loadProfileSection() {
+                const user = this.currentUser;
+                const profileSection = document.getElementById('profileSection');
+                
+                profileSection.innerHTML = `
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="${user.avatar}"></i>
+                            <div class="profile-avatar-edit" id="editAvatarBtn">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <h2 class="profile-name">${user.name}</h2>
+                        <div class="profile-status active">${user.status === 'online' ? 'Online' : user.status}</div>
+                        <p style="color: var(--gray); max-width: 400px; margin: 0 auto;">${user.bio}</p>
+                    </div>
+                    
+                    <div class="profile-info">
+                        <h3>Personal Information</h3>
+                        <div class="info-item">
+                            <div class="info-label">Username</div>
+                            <div class="info-value">${user.username}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">${user.email}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Status</div>
+                            <div class="info-value">${user.status === 'online' ? 'Online' : user.status}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Privacy</div>
+                            <div class="info-value">${user.privacy === 'public' ? 'Public' : user.privacy === 'contacts' ? 'Contacts Only' : 'Private'}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Joined</div>
+                            <div class="info-value">${new Date().toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="profile-action-btn primary" id="editProfileBtn">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button class="profile-action-btn secondary" id="changeAvatarBtn">
+                            <i class="fas fa-camera"></i> Change Avatar
+                        </button>
+                        <button class="profile-action-btn secondary" id="privacySettingsBtn">
+                            <i class="fas fa-shield-alt"></i> Privacy Settings
+                        </button>
+                        <button class="profile-action-btn secondary" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Log Out
+                        </button>
+                    </div>
+                `;
+                
+                // Add event listeners to profile buttons
+                document.getElementById('editProfileBtn').addEventListener('click', () => this.openEditProfileModal());
+                document.getElementById('changeAvatarBtn').addEventListener('click', () => this.changeAvatar());
+                document.getElementById('privacySettingsBtn').addEventListener('click', () => this.showNotification('Privacy settings would open here', 'info'));
+                document.getElementById('logoutBtn').addEventListener('click', () => this.logout());
+                document.getElementById('editAvatarBtn').addEventListener('click', () => this.changeAvatar());
+            },
+            
+            // Open edit profile modal
+            openEditProfileModal() {
+                const modal = document.getElementById('editProfileModal');
+                const form = document.getElementById('editProfileForm');
+                
+                // Populate form with current user data
+                document.getElementById('profileName').value = this.currentUser.name;
+                document.getElementById('profileUsername').value = this.currentUser.username;
+                document.getElementById('profileBio').value = this.currentUser.bio;
+                document.getElementById('profileStatus').value = this.currentUser.status;
+                document.getElementById('profilePrivacy').value = this.currentUser.privacy;
+                
+                // Show modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Add form submit handler
+                form.onsubmit = (e) => {
+                    e.preventDefault();
+                    this.updateProfile();
+                };
+                
+                // Add close button handler
+                document.getElementById('closeEditProfileModal').onclick = () => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                };
+            },
+            
+            // Update user profile
+            updateProfile() {
+                const name = document.getElementById('profileName').value;
+                const username = document.getElementById('profileUsername').value;
+                const bio = document.getElementById('profileBio').value;
+                const status = document.getElementById('profileStatus').value;
+                const privacy = document.getElementById('profilePrivacy').value;
+                
+                // Update current user
+                this.currentUser.name = name;
+                this.currentUser.username = username.startsWith('@') ? username : '@' + username;
+                this.currentUser.bio = bio;
+                this.currentUser.status = status;
+                this.currentUser.privacy = privacy;
+                
+                // Update in users array
+                const userIndex = this.users.findIndex(u => u.id === this.currentUser.id);
+                if (userIndex !== -1) {
+                    this.users[userIndex] = this.currentUser;
+                }
+                
+                // Update localStorage
+                localStorage.setItem('catChatUser', JSON.stringify(this.currentUser));
+                
+                // Update UI
+                this.updateUserStatus();
+                
+                // Close modal
+                document.getElementById('editProfileModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                // Show success message
+                this.showNotification('Profile updated successfully!', 'success');
+                
+                // Reload profile section if active
+                if (this.activeTab === 'profile') {
+                    this.loadProfileSection();
+                }
+            },
+            
+            // Change user avatar
+            changeAvatar() {
+                const avatars = [
+                    'fas fa-user',
+                    'fas fa-user-circle',
+                    'fas fa-user-tie',
+                    'fas fa-user-graduate',
+                    'fas fa-user-astronaut',
+                    'fas fa-user-ninja',
+                    'fas fa-user-md',
+                    'fas fa-cat',
+                    'fas fa-dog',
+                    'fas fa-robot'
+                ];
+                
+                const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+                this.currentUser.avatar = randomAvatar;
+                
+                // Update in users array
+                const userIndex = this.users.findIndex(u => u.id === this.currentUser.id);
+                if (userIndex !== -1) {
+                    this.users[userIndex].avatar = randomAvatar;
+                }
+                
+                // Update localStorage
+                localStorage.setItem('catChatUser', JSON.stringify(this.currentUser));
+                
+                // Update UI
+                document.getElementById('userAvatar').innerHTML = `<i class="${randomAvatar}"></i>`;
+                
+                // Show success message
+                this.showNotification('Avatar updated!', 'success');
+                
+                // Reload profile section if active
+                if (this.activeTab === 'profile') {
+                    this.loadProfileSection();
+                }
+            },
+            
+            // Update user status indicator
+            updateUserStatus() {
+                const indicator = document.getElementById('userStatusIndicator');
+                if (this.currentUser.status === 'online') {
+                    indicator.style.background = 'var(--success)';
+                } else if (this.currentUser.status === 'away') {
+                    indicator.style.background = 'var(--warning)';
+                } else {
+                    indicator.style.background = 'var(--gray)';
+                }
+            },
+            
+            // Start a voice call
+            startVoiceCall() {
+                if (!this.currentChat) {
+                    this.showNotification('Please select a conversation first', 'warning');
+                    return;
+                }
+                
+                this.isInCall = true;
+                const callScreen = document.getElementById('callScreen');
+                const callAvatar = document.getElementById('callAvatar');
+                const callParticipantName = document.getElementById('callParticipantName');
+                
+                // Set call info
+                let participantName = 'Unknown';
+                if (this.currentChatType === 'contact') {
+                    const contact = this.contacts.find(c => c.id === this.currentChat);
+                    participantName = contact?.name || 'Contact';
+                    callAvatar.innerHTML = `<i class="${contact?.avatar || 'fas fa-user'}"></i>`;
+                } else {
+                    participantName = document.getElementById('chatPartnerName').textContent;
+                    callAvatar.innerHTML = document.getElementById('chatAvatar').innerHTML;
+                }
+                
+                callParticipantName.textContent = `Calling ${participantName}...`;
+                
+                // Show call screen
+                callScreen.classList.add('active');
+                document.getElementById('declineCallBtn').style.display = 'block';
+                document.getElementById('endCallBtn').style.display = 'none';
+                document.getElementById('acceptCallBtn').style.display = 'none';
+                
+                // Simulate call ringing
+                setTimeout(() => {
+                    if (this.isInCall) {
+                        document.getElementById('declineCallBtn').style.display = 'none';
+                        document.getElementById('endCallBtn').style.display = 'block';
+                        callParticipantName.textContent = `In call with ${participantName}`;
+                        
+                        // Start call timer
+                        this.startCallTimer();
+                    }
+                }, 3000);
+            },
+            
+            // Start a video call
+            startVideoCall() {
+                this.startVoiceCall();
+                this.showNotification('Video call would start here. This is a demo.', 'info');
+            },
+            
+            // Accept an incoming call
+            acceptCall() {
+                document.getElementById('declineCallBtn').style.display = 'none';
+                document.getElementById('endCallBtn').style.display = 'block';
+                document.getElementById('acceptCallBtn').style.display = 'none';
+                document.getElementById('callParticipantName').textContent = 'In call...';
+                
+                // Start call timer
+                this.startCallTimer();
+            },
+            
+            // End the current call
+            endCall() {
+                this.isInCall = false;
+                document.getElementById('callScreen').classList.remove('active');
+                clearInterval(this.callTimer);
+                this.showNotification('Call ended', 'info');
+            },
+            
+            // Start call timer
+            startCallTimer() {
+                let seconds = 0;
+                const callDuration = document.getElementById('callDuration');
+                
+                this.callTimer = setInterval(() => {
+                    seconds++;
+                    const minutes = Math.floor(seconds / 60);
+                    const secs = seconds % 60;
+                    callDuration.textContent = `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                }, 1000);
+            },
+            
+            // Toggle dark mode
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                document.body.classList.toggle('dark-mode', this.isDarkMode);
+                localStorage.setItem('catChatDarkMode', this.isDarkMode);
+                
+                const icon = document.querySelector('#darkModeToggle i');
+                icon.classList.toggle('fa-moon');
+                icon.classList.toggle('fa-sun');
+                
+                this.showNotification(`${this.isDarkMode ? 'Dark' : 'Light'} mode enabled`, 'info');
+            },
+            
+            // Logout user
+            logout() {
+                if (confirm('Are you sure you want to log out?')) {
+                    this.currentUser = null;
+                    this.isAuthenticated = false;
+                    
+                    // Clear localStorage
+                    localStorage.removeItem('catChatUser');
+                    localStorage.removeItem('catChatToken');
+                    
+                    // Show auth screen
+                    this.showAuthScreen();
+                    
+                    this.showNotification('Logged out successfully', 'success');
+                }
+            },
+            
+            // Open a modal
+            openModal(modalName) {
+                const modal = document.getElementById(`${modalName}Modal`);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Add close handlers
+                    const closeBtn = modal.querySelector('.close-modal');
+                    closeBtn.onclick = () => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    };
+                    
+                    // Close when clicking outside
+                    modal.onclick = (e) => {
+                        if (e.target === modal) {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    };
+                }
+            },
+            
+            // Show notification
+            showNotification(message, type = 'info') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.style.position = 'fixed';
+                notification.style.top = '20px';
+                notification.style.right = '20px';
+                notification.style.padding = '15px 20px';
+                notification.style.borderRadius = '12px';
+                notification.style.color = 'white';
+                notification.style.fontWeight = '500';
+                notification.style.zIndex = '9999';
+                notification.style.boxShadow = 'var(--shadow-lg)';
+                notification.style.transform = 'translateX(100%)';
+                notification.style.transition = 'transform 0.3s';
+                
+                // Set color based on type
+                if (type === 'success') {
+                    notification.style.background = 'var(--success)';
+                } else if (type === 'error') {
+                    notification.style.background = 'var(--danger)';
+                } else if (type === 'warning') {
+                    notification.style.background = 'var(--warning)';
+                } else {
+                    notification.style.background = 'var(--info)';
+                }
+                
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 10);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            },
+            
+            // Utility functions
+            formatLastSeen(timestamp) {
+                const now = Date.now();
+                const diff = now - timestamp;
+                
+                if (diff < 60000) { // Less than 1 minute
+                    return 'Just now';
+                } else if (diff < 3600000) { // Less than 1 hour
+                    const minutes = Math.floor(diff / 60000);
+                    return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+                } else if (diff < 86400000) { // Less than 1 day
+                    const hours = Math.floor(diff / 3600000);
+                    return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+                } else {
+                    const days = Math.floor(diff / 86400000);
+                    return `${days} day${days !== 1 ? 's' : ''} ago`;
+                }
+            },
+            
+            getCurrentTime() {
+                const now = new Date();
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                return `${hours}:${minutes}`;
+            },
+            
+            autoResizeTextarea() {
+                const textarea = document.getElementById('messageInput');
+                textarea.style.height = 'auto';
+                textarea.style.height = (textarea.scrollHeight) + 'px';
+            },
+            
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        };
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            CatChatApp.init();
+        });
+    </script>
+</body>
+</html>
